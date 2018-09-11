@@ -1,11 +1,13 @@
 ### T1
 
-for i in range(5):    
+for i in range(5):    ### in order for convenience, I change the number into 5.
     print("We like Python's turtules!")
 
 ### T3
 
-months = ["Jan","Feb","Mar","Apr","May","Jul","Jun","Aug","Sep","Oct","Nov","Dec"]for i in months:    
+months = ["Jan","Feb","Mar","Apr","May","Jul","Jun","Aug","Sep","Oct","Nov","Dec"]
+
+for i in months:    
     print("One of the months of the year is ",i)
 
 ### T4
