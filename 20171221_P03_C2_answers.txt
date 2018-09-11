@@ -1,3 +1,7 @@
+### VARIABLES, EXPRESSIONS AND STATEMENTS
+
+###这一章从最基础的变量，表达，语句开始入手Python的编程。
+
 ### T7
 
 total_hrs = int(input("How many hours,in total?"))
