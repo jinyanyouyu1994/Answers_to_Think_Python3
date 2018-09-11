@@ -1,3 +1,7 @@
+### HELLO, LITTLE TURTLES!
+
+### 这一章从画乌龟来进一步了解Python，主要目标是学习基础的循环语句以及会用简单的methods画乌龟。这一章节的内容在后续章节中会更深入地学习。
+
 ### T1
 
 for i in range(5):    ### in order for convenience, I change the number into 5.
@@ -246,28 +250,4 @@ for i in range(200):
     dist += 2
 
 wn.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
