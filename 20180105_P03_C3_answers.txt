@@ -1,0 +1,271 @@
+### T1
+
+for i in range(5):    
+    print("We like Python's turtules!")
+
+### T3
+
+months = ["Jan","Feb","Mar","Apr","May","Jul","Jun","Aug","Sep","Oct","Nov","Dec"]for i in months:    
+    print("One of the months of the year is ",i)
+
+### T4
+
+import turtle
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+tess = turtle.Turtle()
+tess.forward(0)
+tess.left(90)
+tess.left(3645)
+wn.mainloop()  
+
+### T5
+
+xs = [12, 10, 32, 3, 66, 17, 42, 99, 20]
+for i in xs:    
+    print("each number and its square:  ",i,i**2)
+	
+total = 0
+for num in xs:    
+    total += num
+print(total)
+
+pro = 1
+for num in xs:    
+    pro *= num
+print(pro)
+
+### T6
+import turtle
+wn = turtle.Screen()
+wn.title("regular polygons")
+tess = turtle.Turtle()
+tess.color("red")
+
+side = int(input("The num of side is "))
+leg = int(input("The length of side is "))
+
+for i in range(side):
+    tess.forward(leg)
+    tess.left(360/side)
+
+wn.mainloop()
+
+### T7
+import turtle
+wn = turtle.Screen()
+wn.title("A drunk friend")
+tra = turtle.Turtle()
+tra.color("blue")
+angle = [160, -43, 270, -97, -43, 200, -940, 17, -86]
+for i in angle:
+    tra.forward(100)
+    tra.left(i)
+
+wn.mainloop()
+
+### T11 
+import turtle
+wn = turtle.Screen()
+
+tess = turtle.Turtle()
+tess.hideturtle()###hide turtle. use"tess.showturtle()"to show the turtle
+for i in range(5):
+    tess.forward(100)
+    tess.right(144)
+
+wn.mainloop()
+    
+### T13
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("light green")
+#wn.register_shape("turtle")
+turtle.speed(20)
+turtle.shape("turtle")
+turtle.color("blue")
+
+def skip(r): # 抬起画笔，向前运动一段距离放下
+    turtle.penup()
+    turtle.forward(160)
+    turtle.pendown()
+
+    turtle.forward(10)
+
+    turtle.penup()
+    turtle.forward(18)
+    turtle.stamp()
+    
+    turtle.forward(-160 - 10 - 18)
+
+def SetupClock(r):
+    # 建立表的外框
+    turtle.pensize(7)
+    for i in range(12):
+        skip(r)
+        turtle.right(30)
+SetupClock(100)
+wn.mainloop()
+
+### Clock
+import turtle
+from datetime import * # here means import all the methods, but 'import datetime' just use the namespace, will have an error，
+
+wn = turtle.Screen()
+wn.bgcolor("light green")
+wn.register_shape("triangle", ((5, -3), (0, 5), (-5, -3)))
+#t = turtle.Turtle()
+turtle.color("red")
+
+
+def skip(step): # 抬起画笔，向前运动一段距离放下
+    turtle.penup()
+    turtle.forward(step)
+    turtle.pendown()
+
+def mkHand(name, length): # 注册turtle shape，建立表针turtle
+    turtle.reset()
+    skip(-length * 0.1)
+    # 开始记录多边形的顶点，
+    turtle.begin_poly()
+    turtle.forward(length * 1.1)
+    #当前位置是最后一个顶点，将与第一个顶点相连
+    turtle.end_poly()
+    # 返回最后记录的多变形
+    handForm = turtle.get_poly()
+    turtle.register_shape(name,handForm)
+
+def Init():
+    global secHand, minHand, hurHand, printer
+    # 重置turtle指向北
+    turtle.mode("logo")
+    mkHand("secHand", 135)
+    mkHand("minHand", 125)
+    mkHand("hurHand", 90)
+    secHand = turtle.Turtle()
+    secHand.shape("secHand")
+    minHand = turtle.Turtle()
+    minHand.shape("minHand")
+    hurHand = turtle.Turtle()
+    hurHand.shape("hurHand")
+
+    for hand in secHand, minHand, hurHand:
+        hand.shapesize(1,1,3)
+        hand.speed(0)
+    # 建立输出文字turtle
+    printer = turtle.Turtle()
+    printer.hideturtle()
+    printer.penup()
+
+def SetupClock(r):
+    # 建立表的外框
+    turtle.reset()
+    turtle.pensize(7)
+    for i in range(60):
+        skip(r)
+        if i % 5 == 0:
+            turtle.forward(20)
+            skip(-r - 20)
+
+            skip(r + 20)
+            if i == 0:
+                turtle.write(int(12), align= "center", font= ("Courier", 14, "bold"))
+            elif i == 30:
+                skip(25)
+                turtle.write(int(i/5), align="center", font=("Courier", 14, "bold"))
+                skip(-25)
+            elif (i == 25 or i == 35):
+                skip(20)
+                turtle.write(int(i / 5), align="center", font=("Courier", 14, "bold"))
+                skip(-20)
+            else:
+                turtle.write(int(i / 5), align="center", font=("Courier", 14, "bold"))
+            skip(-r - 20)
+        else:
+            turtle.dot(5)
+            # turtle.turtle(5)
+            skip(-r)
+        turtle.right(6)
+
+def week(t):
+    week = ["MON","TUE","WEN","THU","FRI","SAT","SUN"]
+    return week[t.weekday()]
+
+def Date(t):
+    y = t.year
+    m = t.month
+    d = t.day
+    return "%s %d%d" % (y,m,d)
+
+def Tick():
+    #绘制表针的动态显示
+    t = datetime.today()
+    second = t.second + t.microsecond * 0.00001
+    minute = t.minute + second / 60.0
+    hour = t.hour +minute / 60.0
+    secHand.setheading(6 * second)
+    minHand.setheading(6 * minute)
+    hurHand.setheading(30 * hour)
+
+    turtle.tracer(False)
+    printer.forward(65)
+    printer.write(week(t),align= "center", font= ("Courier", 14, "bold"))
+    printer.back(130)
+    printer.write(Date(t),align= "center", font= ("Courier", 14, "bold"))
+    printer.home()
+    turtle.tracer(True)
+
+    #100ms 后继续调用tick
+    turtle.ontimer(Tick,100)
+
+def main():
+    turtle.tracer(False)
+    Init()
+    SetupClock(160)
+    turtle.tracer(True)
+    Tick()
+    turtle.mainloop()
+
+if __name__ == "__main__":
+    main()
+
+
+###
+import turtle
+wn = turtle.Screen()
+wn.bgcolor("light green")
+
+turtle.tracer(8, 25)
+dist = 2
+for i in range(200):
+    turtle.fd(dist)
+    turtle.rt(90)
+    dist += 2
+
+wn.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
