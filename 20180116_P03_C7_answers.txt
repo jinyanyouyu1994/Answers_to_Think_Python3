@@ -1,0 +1,313 @@
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = "test at line {0} FAILED.".format(linenum)
+    print(msg)
+
+def test_suite():  
+
+test_suite()
+
+
+######
+def mysum(xs):
+    running_total = 0
+    for x in xs:
+        running_total = running_total + x
+    return running_total
+	
+######
+def sum_to(n):
+    ss = 0
+    v = 1
+    while v <= n:
+        ss = ss + v
+        v = v+1
+    return ss
+    running_total = 0
+	
+######
+def seq3np1(n):
+    while n != 1:
+        print(n, end = ", ")
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = n * 3 + 1
+    print(n, end = ".\n")
+
+seq3np1(111)
+
+######
+def num_digits(n):
+    count = 0
+    while n != 0:
+        count = count + 1
+        n = n // 10
+    return count
+print(num_digits(710))
+
+
+####
+def num_zero_and_five_digits(n):
+    count = 0
+    while n > 0:
+        digit = n % 10
+        if digit == 0 or digit == 5:
+            count = count + 1
+        n = n // 10
+    return count
+
+####
+for x in range(13):
+    print(x,"\t",2**x)
+
+####
+def print_multiples(n):
+    for i in range(1, 7):
+        print(n * i, end="   ")
+    print()
+
+
+def print_mult_table(high):
+    for i in range(1, high+1):
+        print_multiples(i)
+    print()
+
+
+print_mult_table(10)
+
+
+####
+def print_multiples(n,high):
+    for i in range(1, high+1):
+        print(n * i, end="   ")
+    print()
+
+
+def print_mult_table(high):
+    for i in range(1, high+1):
+        print_multiples(i,i+1)
+    print()
+
+print_mult_table(4)
+
+
+####
+def play_the_game_once():
+    total = 0
+    while True:
+        response = input("enter the next number.(leave blank to end)")
+        if response == "":
+            break
+        total += int(response)
+    print("the total of the numbers you entered is ",total)
+
+while True:
+    play_the_game_once()
+    response = input("Play again? (yes or no)")
+    if response != "yes":
+        break
+print("Goodbye!")
+
+
+####
+import random
+rng = random.Random()
+number = rng.randrange(1,1000)
+
+guess = 0
+msg = ""
+while True:
+    guess = int(input(msg+"\nGuess my number between 1 and 1000: "))
+    guess += 1
+    if guess > number:
+        msg += str(guess)+ " is too high.\n"
+    elif guess < number:
+        msg += str(guess) + " is too low.\n"
+    else:
+        break
+
+input('\n\n Great, you got it in {0) guess!\n\n'.format(guess))
+
+#####
+students = [("John", ["CompSci", "Physics"]),("Vusi", ["Maths", "CompSci", "Stats"]),("Jess", ["CompSci", "Accounting", "Economics", "Management"]),("Sarah", ["InfSys", "Accounting", "Economics", "CommLaw"]),("Zuki", ["Sociology", "Economics", "Law", "Stats", "Music"])]
+counter = 0
+for (name,subjects) in students:
+    print(name, "takes", len(subjects), "courses")
+    for s in subjects:
+        if s== "CompSci":
+            counter += 1
+
+print("The number of students taking CompSci is", counter)
+
+####
+def sqrt(n):
+    approx = n/2.0
+    while True:
+        better = (approx + n/approx)/2.0
+		print(better)
+        if abs(approx - better) < 0.000001:
+            return better
+        approx = better
+		
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = "test at line {0} FAILED.".format(linenum)
+    print(msg)
+
+def test_suite():
+    print(sqrt(25.0))
+    print(sqrt(49.0))
+    print(sqrt(81.0))
+
+test_suite()
+
+
+########
+
+		
+
+###T1-3
+
+def count_num(n):
+    count = 0
+    for i in n:      
+        if i % 2 == 1:
+            count = count + 1
+		return count
+	
+def odd_sum(n):
+    odd_sum = 0
+    for i in n:
+        if i % 2 == 0:
+            odd_sum += i
+    return odd_sum
+ 
+
+n = (1, 2, 3, 4, 5)
+print(count_num(n))
+print(odd_sum(n)) 
+
+###T4
+def len_lst(n):
+    count = 0
+    for i in n:
+        if len(i) == 5:
+            count += 1
+    return count
+
+
+n = ("abnc","ankdm","dkfaeege","fde","a","dchgjhj","abcds")
+print(len_lst(n))
+
+###T5
+
+n = (1,3,2,4,3)
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line{0} ok.".format(linenum)
+    else:
+        msg = "test at line{0} FAILED.".format(linenum)
+    print(msg)
+
+def test_suite():
+    print(n[0] % 2 == 1)
+
+test_suite()
+
+def sum(n):
+    sum = 0
+    for i in n:
+        if n[0] % 2 == 1:
+            sum += i
+    return sum - n[0]
+print(sum(n))
+
+###T9
+
+def print_multiples(n):
+    for i in n:
+        tri = int(i*(i+1)/2)
+        print(i,tri, end = "\n")
+    print()
+n = [1,2,3,4,5]
+
+print(print_multiples(n))
+
+###T10
+########该program对于小于4的数都不能做出准确的判断，还有待改进
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2,int(n**0.5+1)):
+        if n%i == 0:
+            return False
+        return True
+
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line{0} ok.".format(linenum)
+    else:
+        msg = "test at line{0} FAILED.".format(linenum)
+    print(msg)
+
+def test_suite():
+    test(is_prime(11))
+	test(not is_prime(35))
+	test(is_prime(19911121))
+test_suite()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
