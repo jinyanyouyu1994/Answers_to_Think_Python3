@@ -1,40 +1,43 @@
+----------------------------------------------------------------------------------------------------------------------------------------
+### 这一章节主要学习Boolean expression， logical operators 和conditional execution。
+----------------------------------------------------------------------------------------------------------------------------------------
 import turtle
-def make_window(colr,ttle):
+
+def make_window(colr, ttle):
     w = turtle.Screen()
     w.bgcolor(colr)
     w.title(ttle)
     return w
 
-def make_turtle(colr1,colr2,sz):
-     t = turtle.Turtle()
-     t.color(colr1,colr2)
-     t.pensize(sz)
-     return t
+def make_turtle(colr1, colr2, sz):
+    t = turtle.Turtle()
+    t.color(colr1, colr2)
+    t.pensize(sz)
+    return t
+
 xs = [48, 117, 200, 240, 160, 260, 220]
-def draw_bar(t,height):
+
+def draw_bar(t, height):
     """get turte t to draw one bar, of height"""
     t.begin_fill()
     t.left(90)
     t.forward(height)
     t.write(" " + str(height))
     t.right(90)
-    t.forward(40)### this determines the width of each bar
+    t.forward(40)  ### this determines the width of each bar
     t.right(90)
     t.forward(height)
     t.left(90)
     t.end_fill()
-    t.forward(0)### this is determines the gap between bars
-
+    t.forward(0)  ### this is determines the gap between bars
 
 wn = make_window("lightgreen", "a")
-tess = make_turtle("red","blue",2)
+tess = make_turtle("red", "blue", 2)
 for v in xs:
- 
-    draw_bar(tess,v)
+    draw_bar(tess, v)
 wn.mainloop()
 
-DAY = ("MON","TUR","WEN","THR","FRI","SAT","SUN")
-[MON,TUR,WEN,THR,FRI,SAT,SUN]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #### T6
 def grade(xz):
@@ -51,16 +54,11 @@ def grade(xz):
 xz = [83, 75, 74.9, 70, 69.9, 65, 60, 59.9, 55, 50,49.9, 45, 44.9, 40, 39.9, 2, 0]
 print(grade(xz))
 
-    if height >= 200:
-        return t.color("red")
-    elif height >= 100 and height < 200
-        return t.color("blue")
-    else:
-        return
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#### T7 & T8 & T9  ###在填充颜色的时候遇到点小问题，用fillcolor指令就可以很好地解决了。
 
 import turtle
-
 
 def make_window(colr, ttle):
     w = turtle.Screen()
@@ -68,26 +66,14 @@ def make_window(colr, ttle):
     w.title(ttle)
     return w
 
-
-def make_turtle(colr, sz):
-    t = turtle.Turtle()
-    t.color(colr)
-    t.pensize(sz)
-    return t
-
-
-xs = [48, 117, 200, 240, 160, 260, 220]
-
-
 def draw_bar(t, height):
     """get turte t to draw one bar, of height"""
-
     if height >= 200:
-        return t.color("red")
+        t.fillcolor("red")
     elif height >= 100 and height < 200:
-        return t.color("blue")
+        t.fillcolor("blue")
     else:
-        return t.color("green")
+        t.fillcolor("green")
     t.begin_fill()
     t.left(90)
     t.forward(height)
@@ -100,24 +86,15 @@ def draw_bar(t, height):
     t.end_fill()
     t.forward(0)  ### this is determines the gap between bars
 
-
 wn = make_window("lightgreen", "a")
-tess = make_turtle(2)
+
+tess = turtle.Turtle()
+xs = [48, 117, 200, 240, 160, 260, 220]
 for v in xs:
     draw_bar(tess, v)
 wn.mainloop()
 
-
-
-    for x in xs:
-            if x >= 200:
-        colr = "blue"
-
-    elif x >= 100 and x < 200:
-        colr = "blue"
-
-    else:
-        colr = "green"
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### T10
 
@@ -128,6 +105,8 @@ def find_hypot(a,b):
 a=1
 b=1
 print(find_hypot(a,b))
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### T11&12
 
