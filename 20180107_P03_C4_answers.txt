@@ -233,20 +233,3 @@ wn = make_window("lightblue","star")
 tess = make_turtle("red",3)
 draw_star(tess,60)
 wn.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
