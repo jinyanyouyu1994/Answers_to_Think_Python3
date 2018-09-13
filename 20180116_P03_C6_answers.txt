@@ -1,0 +1,279 @@
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno ###get the caller's line number
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = ("test at line {0} FAILED.".format(linenum))
+    print(msg)
+	
+########
+def find_first_2_letter_word(xs):
+    for wd in xs:
+        if len(wd) == 2:
+            return wd
+    return " "
+print(find_first_2_letter_word(["I", "like", "cheese"]))
+print(find_first_2_letter_word(["This", "is", "a", "dead", "parrot"]))
+
+############## Uint testing
+
+def absolute_value(x):
+    if x < 0:
+        return -x
+    return x
+
+def test_suite():
+    """run the suite of tests for code in this module (this file)."""
+    test(absolute_value(17) == 17)
+    test(absolute_value(-17) == 17)
+    test(absolute_value(0) == 0)
+    test(absolute_value(3.14) == 3.14)
+    test(absolute_value(-3.14) == 3.14)
+
+test_suite()
+
+
+###T1
+def turn_clockwise(dir):
+    if dir == "N":
+        return "E"
+    elif dir == "E":
+        return "S"
+    elif dir == "S":
+        return "W"
+    elif dir == "W":
+        return "N"
+    else:
+        return None
+
+def test_suite():
+    test(turn_clockwise("N") == "E")
+    test(turn_clockwise("W") == "N")
+    test(turn_clockwise(42) == None)
+    test(turn_clockwise("rubbish") == None)
+
+test_suite()
+
+### T2&T3&T4&T5
+def day_name(num):
+    if num == 0:
+        return "Sunday"
+    elif num == 1:
+        return "Monday"
+    elif num == 2:
+        return "Tuesday"
+    elif num == 3:
+        return "Wednesday"
+    elif num == 4:
+        return "Thursday"
+    elif num == 5:
+        return "Friday"
+    elif num == 6:
+        return "Saturday"
+    else:
+        return None
+
+		
+def day_num(day):
+    if day == "Sunday":
+        return 0
+    elif day == "Monday":
+        return 1
+    elif day == "Tuesday":
+        return 2
+    elif day == "Wednesday":
+        return 3
+    elif day == "Thursday":
+        return 4
+    elif day == "Friday":
+        return 5
+    elif day == "Saturday":
+        return 6
+    else:
+        return None
+
+		
+def day_add(day,num):
+    num = (num + day_num(day))%7
+    return day_name(num)
+	
+	
+day = str(input("Tonday is "))
+num = int(input("Holiday have "))
+print("Today is Wednesday. I leave on holiday in 19 days time. What day will that be? ",day_add(day,num))
+
+def test_suite():
+    test(day_name(3) == "Wednesday")
+    test(day_name(6) == "Saturday")
+    test(day_name(42) == None)
+    test(day_num("Halloween") == None)
+test_suite()
+
+
+### T7&T8
+def to_secs(hrs,mins,secs):
+    secs = hrs * 3600 + mins *60 + secs
+    return secs
+
+def test_suite():
+    test(to_secs(2, 30, 10) == 9010)
+    test(to_secs(2, 0, 0) == 7200)
+    test(to_secs(0, 2, 0) == 120)
+    test(to_secs(0, 0, 42) == 42)
+    test(to_secs(0, -10, 10) == -590)
+
+test_suite()
+
+############## T8
+def to_secs(hrs,mins,secs):
+    secs = int(hrs * 3600 + mins *60 + secs)
+    return secs
+
+### T9
+def to_secs(hrs,mins,secs):
+    secs = int(hrs * 3600 + mins *60 + secs)
+    return secs
+
+
+def hours_in(secs):
+    x = int(secs / 3600)
+    return x
+
+def minutes_in(secs):
+    x = (secs / 3600) - int(secs / 3600)
+    y = int(x * 60)
+    return y
+
+def seconds_in(secs):
+    x = (secs / 3600) - int(secs / 3600)
+    y = int(x * 60)
+    z = secs - int(secs / 3600)*3600 -y*60
+    return z
+
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno ###get the caller's line number
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = ("test at line {0} FAILED.".format(linenum))
+    print(msg)
+
+def test_suite():
+    test(to_secs(2, 30, 10) == 9010)
+    test(to_secs(2, 0, 0) == 7200)
+    test(to_secs(0, 2, 0) == 120)
+    test(to_secs(0, 0, 42) == 42)
+    test(to_secs(0, -10, 10) == -590)
+    test(to_secs(2.5, 0, 10.71) == 9010)
+    test(to_secs(2.433, 0, 0) == 8758)
+    test(hours_in(9010) == 2)
+    test(minutes_in(9010) == 30)
+    test(seconds_in(9010) == 10)
+test_suite()
+
+#### T11
+def compare(a,b):
+    if a > b:
+        return 1
+    elif a == b:
+        return 0
+    else:
+        return -1
+
+
+import sys
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno ###get the caller's line number
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = ("test at line {0} FAILED.".format(linenum))
+    print(msg)
+
+
+def test_suite():
+    test(compare(5, 4) == 1)
+    test(compare(7, 7) == 0)
+    test(compare(2, 3) == -1)
+    test(compare(42, 1) == 1)
+
+test_suite()
+   
+   
+###T12 &T13
+def slope(x1, y1, x2, y2):
+    slp = (y2-y1) /(x2-x1)
+    return slp
+
+
+def intercept(x1, y1, x2, y2):
+    inter = y1 - x1 * (y2-y1) /(x2-x1)
+    return inter
+
+def test_suite():
+    test(slope(5, 3, 4, 2) == 1.0)
+    test(slope(1, 2, 3, 2) == 0.0)
+    test(slope(1, 2, 3, 3) == 0.5)
+    test(slope(2, 4, 1, 2) == 2.0)
+    test(intercept(1, 6, 3, 12) == 3.0)
+    test(intercept(6, 1, 1, 6) == 7.0)
+    test(intercept(4, 6, 12, 8) == 5.0)
+test_suite()
+
+
+
+### T14&T15
+def is_even(n):
+    if n % 2 == 0:
+        return True
+    else:
+        return False
+
+
+def is_odd(n):
+    if n % 2 != 0:
+        return True
+    else:
+        return False
+
+def test_suite():
+    test(is_odd(5) == True)
+    test(not is_odd(5) == True)
+    test(is_even(6) == True)
+    test(not is_even(6) == True)
+
+test_suite()
+
+
+###T18&T19
+def f2c(t):
+    t = round((t - 32) / 1.8)
+    return t
+
+def c2f(t):
+    t = round(t * 1.8 + 32)
+    return t
+
+def test_suite():
+    test(f2c(212) == 100)  # Boiling point of water
+    test(f2c(32) == 0)  # Freezing point of water
+    test(f2c(-40) == -40)  # Wow, what an interesting case!
+    test(f2c(36) == 2)
+    test(f2c(37) == 3)
+    test(f2c(38) == 3)
+    test(f2c(39) == 4)
+    test(c2f(0) == 32)
+    test(c2f(100) == 212)
+    test(c2f(-40) == -40)
+    test(c2f(12) == 54)
+    test(c2f(18) == 64)
+    test(c2f(-48) == -54)
+test_suite()
+
