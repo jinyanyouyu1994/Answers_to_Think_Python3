@@ -1,0 +1,149 @@
+import turtle
+def make_window(colr,ttle):
+    w = turtle.Screen()
+    w.bgcolor(colr)
+    w.title(ttle)
+    return w
+
+def make_turtle(colr1,colr2,sz):
+     t = turtle.Turtle()
+     t.color(colr1,colr2)
+     t.pensize(sz)
+     return t
+xs = [48, 117, 200, 240, 160, 260, 220]
+def draw_bar(t,height):
+    """get turte t to draw one bar, of height"""
+    t.begin_fill()
+    t.left(90)
+    t.forward(height)
+    t.write(" " + str(height))
+    t.right(90)
+    t.forward(40)### this determines the width of each bar
+    t.right(90)
+    t.forward(height)
+    t.left(90)
+    t.end_fill()
+    t.forward(0)### this is determines the gap between bars
+
+
+wn = make_window("lightgreen", "a")
+tess = make_turtle("red","blue",2)
+for v in xs:
+ 
+    draw_bar(tess,v)
+wn.mainloop()
+
+DAY = ("MON","TUR","WEN","THR","FRI","SAT","SUN")
+[MON,TUR,WEN,THR,FRI,SAT,SUN]
+
+#### T6
+def grade(xz):
+    for x in xz:
+        if x >= 75:
+            print("Grade")
+        elif x >= 70 and x < 75:
+            print("Upper Second")
+        elif x >= 60 and x < 70:
+            print("Second")
+        else:
+            print("Work hard")
+
+xz = [83, 75, 74.9, 70, 69.9, 65, 60, 59.9, 55, 50,49.9, 45, 44.9, 40, 39.9, 2, 0]
+print(grade(xz))
+
+    if height >= 200:
+        return t.color("red")
+    elif height >= 100 and height < 200
+        return t.color("blue")
+    else:
+        return
+
+
+import turtle
+
+
+def make_window(colr, ttle):
+    w = turtle.Screen()
+    w.bgcolor(colr)
+    w.title(ttle)
+    return w
+
+
+def make_turtle(colr, sz):
+    t = turtle.Turtle()
+    t.color(colr)
+    t.pensize(sz)
+    return t
+
+
+xs = [48, 117, 200, 240, 160, 260, 220]
+
+
+def draw_bar(t, height):
+    """get turte t to draw one bar, of height"""
+
+    if height >= 200:
+        return t.color("red")
+    elif height >= 100 and height < 200:
+        return t.color("blue")
+    else:
+        return t.color("green")
+    t.begin_fill()
+    t.left(90)
+    t.forward(height)
+    t.write(" " + str(height))
+    t.right(90)
+    t.forward(40)  ### this determines the width of each bar
+    t.right(90)
+    t.forward(height)
+    t.left(90)
+    t.end_fill()
+    t.forward(0)  ### this is determines the gap between bars
+
+
+wn = make_window("lightgreen", "a")
+tess = make_turtle(2)
+for v in xs:
+    draw_bar(tess, v)
+wn.mainloop()
+
+
+
+    for x in xs:
+            if x >= 200:
+        colr = "blue"
+
+    elif x >= 100 and x < 200:
+        colr = "blue"
+
+    else:
+        colr = "green"
+
+### T10
+
+def find_hypot(a,b):
+    c = a**0.5 + b**0.5
+    return c
+
+a=1
+b=1
+print(find_hypot(a,b))
+
+### T11&12
+
+from statistics import median
+
+def is_rightangled(a,b,c):
+    my_list = [a,b,c]
+    a = max(my_list)
+    c = min(my_list)
+    b = median(my_list)
+    if a**2 == b**2+c**2:
+        return True
+    else:
+        return False
+
+a = int(input("a = "))
+b = int(input("b = "))
+c = int(input("c = "))
+print(is_rightangled(a,b,c))
