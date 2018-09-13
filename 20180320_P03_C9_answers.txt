@@ -1,0 +1,585 @@
+import sys
+
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = "test at line {0} FAILED.".format(linenum)
+    print(msg)
+	##################
+
+
+from math import *
+######
+
+def f(r):
+    c = 2 * pi * r
+    a = pi * r * r
+	return(c,a)
+	
+#####
+
+import turtle
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Handling keypresses!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+def h1():
+    tess.forward(30)
+def h2():
+    tess.left(45)
+def h3():
+    tess.right(45)
+def h4():
+    wn.bye()
+wn.onkey(h1, "Up")
+wn.onkey(h2, "Left")
+wn.onkey(h3, "Right")
+wn.onkey(h4, "q")
+wn.listen()
+wn.mainloop()
+
+############
+
+import turtle
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Handling mouse clicks!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess.color("purple")
+tess.pensize(3)
+tess.shape("circle")
+alex = turtle.Turtle()
+alex.color("blue")
+alex.forward(100)
+
+def handler_for_alex(x,y):
+    wn.title("Tess clicked at {0}, {1}".format(x, y))
+    tess.left(42)
+    tess.forward(30)
+
+def handler_for_tess(x,y):
+    wn.title("Alex clicked at {0}, {1}".format(x, y))
+    alex.right(84)
+    alex.forward(30)
+
+tess.onclick(handler_for_tess)
+alex.onclick(handler_for_alex)
+wn.mainloop()
+
+####
+import turtle
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Using a timer")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess.color("purple")
+tess.pensize(3)
+
+def h1():
+    tess.forward(100)
+    tess.left(56)
+
+wn.ontimer(h1, 5000)##这里的5000代表5s，表示计时器将在5s后有反应
+
+wn.mainloop()
+
+####
+import turtle
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Using a timer to get events!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess.color("purple")
+tess.pensize(3)
+
+def h1():
+    tess.forward(100)
+    tess.left(56)
+    wn.ontimer(h1, 3000)
+
+h1()
+wn.mainloop()
+
+#####
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+draw_housing()
+tess.penup()
+tess.forward(40)
+tess.left(90)
+tess.forward(50)
+tess.shape("circle")
+tess.shapesize(3)
+tess.fillcolor("green")
+
+state_num = 0
+def advance_state_machine():
+    global state_num
+    if state_num == 0:
+        tess.forward(70)
+        tess.fillcolor("orange")
+        state_num = 1
+    elif state_num == 1:
+        tess.forward(70)
+        tess.fillcolor("red")
+        state_num = 2
+    else:
+        tess.back(140)
+        tess.fillcolor("green")
+        state_num = 0
+
+wn.onkey(advance_state_machine, "space")
+
+wn.listen()
+wn.mainloop()
+
+
+###T1
+
+import turtle
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Handling keypresses!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+def h1():
+    tess.forward(30)
+def h2():
+    tess.left(45)
+def h3():
+    tess.right(45)
+def h4():
+    wn.bye()
+
+def h5():
+    tess.color("red")
+
+def h6():
+    tess.color("green")
+
+def h7():
+    tess.color("blue")
+
+wn.onkey(h1, "Up")
+wn.onkey(h2, "Left")
+wn.onkey(h3, "Right")
+wn.onkey(h4, "q")
+wn.onkey(h5,"R")
+wn.onkey(h6,"G")
+wn.onkey(h7,"B")
+wn.listen()
+wn.mainloop()
+
+
+###T2
+
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+draw_housing()
+tess.penup()
+tess.forward(40)
+tess.left(90)
+tess.forward(50)
+tess.shape("circle")
+tess.shapesize(3)
+tess.fillcolor("green")
+
+state_num = 0
+def advance_state_machine():
+    global state_num
+
+    if state_num == 0:
+        tess.forward(70)
+        tess.fillcolor("orange")
+        state_num = 1
+    elif state_num == 1:
+        tess.forward(70)
+        tess.fillcolor("red")
+        state_num = 2
+    else:
+        tess.back(140)
+        tess.fillcolor("green")
+        state_num = 0
+    wn.ontimer(advance_state_machine, 5000)
+
+advance_state_machine()
+wn.mainloop()
+
+
+###T3
+
+
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess2 = turtle.Turtle()
+tess3= turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+draw_housing()
+
+tess.penup()
+tess.shapesize(3)
+tess.forward(40)
+tess.left(90)
+tess.shape("circle")
+tess.forward(40)
+tess.fillcolor("green")
+
+tess2.penup()
+tess2.shapesize(3)
+tess2.forward(40)
+tess2.left(90)
+tess2.shape("circle")
+tess2.forward(110)
+tess2.fillcolor("red")
+
+tess3.penup()
+tess3.shapesize(3)
+tess3.forward(40)
+tess3.left(90)
+tess3.shape("circle")
+tess3.forward(180)
+tess3.fillcolor("orange")
+
+wn.mainloop()
+
+
+###T4
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess2 = turtle.Turtle()
+tess3= turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+draw_housing()
+
+tess.penup()
+tess.shapesize(3)
+tess.forward(40)
+tess.left(90)
+tess.shape("circle")
+tess.forward(40)
+tess.fillcolor("green")
+
+tess2.penup()
+tess2.shapesize(3)
+tess2.forward(40)
+tess2.left(90)
+tess2.shape("circle")
+tess2.forward(110)
+tess2.fillcolor("red")
+
+tess3.penup()
+tess3.shapesize(3)
+tess3.forward(40)
+tess3.left(90)
+tess3.shape("circle")
+tess3.forward(180)
+tess3.fillcolor("orange")
+
+
+state_num = 0
+def advance_state_machine():
+    global state_num
+    if state_num == 0:
+        tess.fillcolor("green")
+        tess2.fillcolor("black")
+        tess3.fillcolor("black")
+        state_num = 1
+    elif state_num == 1:
+        tess.fillcolor("black")
+        tess2.fillcolor("red")
+        tess3.fillcolor("black")
+        state_num = 2
+    else:
+        tess.fillcolor("black")
+        tess2.fillcolor("black")
+        tess3.fillcolor("orange")
+        state_num = 0
+    wn.ontimer(advance_state_machine, 5000)
+
+advance_state_machine()
+wn.mainloop()
+
+
+###T5
+
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess2 = turtle.Turtle()
+tess3= turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+draw_housing()
+
+tess.penup()
+tess.shapesize(3)
+tess.forward(40)
+tess.left(90)
+tess.shape("circle")
+tess.forward(40)
+tess.fillcolor("green")
+
+tess2.penup()
+tess2.shapesize(3)
+tess2.forward(40)
+tess2.left(90)
+tess2.shape("circle")
+tess2.forward(110)
+tess2.fillcolor("red")
+
+tess3.penup()
+tess3.shapesize(3)
+tess3.forward(40)
+tess3.left(90)
+tess3.shape("circle")
+tess3.forward(180)
+tess3.fillcolor("orange")
+
+
+state_num = 0
+x = 0
+def advance_state_machine():
+    global state_num
+    global x
+    if state_num == 0:
+        tess.fillcolor("green")
+        tess2.fillcolor("black")
+        tess3.fillcolor("black")
+        x = 30000
+        state_num = 1
+    elif state_num == 1:
+        tess.fillcolor("green")
+        tess2.fillcolor("black")
+        tess3.fillcolor("orange")
+        x = 2000
+        state_num = 2
+    elif state_num == 2:
+        tess.fillcolor("black")
+        tess2.fillcolor("black")
+        tess3.fillcolor("orange")
+        x = 10000
+        state_num = 3
+    else:
+        tess.fillcolor("black")
+        tess2.fillcolor("red")
+        tess3.fillcolor("black")
+        x = 30000
+        state_num = 0
+
+    wn.ontimer(advance_state_machine, x)
+
+advance_state_machine()
+wn.mainloop()
+
+
+###T5 simply
+
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess2 = turtle.Turtle()
+tess3 = turtle.Turtle()
+
+def draw_housing():
+    tess.pensize(3)
+    tess.color("black", "darkgrey")
+    tess.begin_fill()
+    tess.forward(80)
+    tess.left(90)
+    tess.forward(200)
+    tess.circle(40,180)
+    tess.forward(200)
+    tess.left(90)
+    tess.end_fill()
+
+def change_color(tess,step,colr):
+    tess.penup()
+    tess.shapesize(3)
+    tess.forward(40)
+    tess.left(90)
+    tess.shape("circle")
+    tess.forward(step)
+    tess.fillcolor(colr)
+
+def move_light(col1, col2, col3):
+    tess.fillcolor(col1)
+    tess2.fillcolor(col2)
+    tess3.fillcolor(col3)
+
+state_num = 0
+x = 0
+def advance_state_machine():
+    global state_num
+    global x
+    if state_num == 0:
+        move_light("green","black","black")
+        x = 3000
+        state_num = 1
+    elif state_num == 1:
+        move_light("green","black","orange")
+        x = 1000
+        state_num = 2
+    elif state_num == 2:
+        move_light("black","black","orange")
+        x = 1000
+        state_num = 3
+    else:
+        move_light("black","red","black")
+        x = 2000
+        state_num = 0
+
+    wn.ontimer(advance_state_machine, x)
+
+draw_housing()
+my_list = [[tess, 40,"green"], [tess2, 110, "red"], [tess3, 180,"orange"]]
+for lst in my_list:
+    change_color(lst[0], lst[1], lst[2])
+
+advance_state_machine()
+wn.mainloop()
+
+
+###T6
+
+import turtle
+
+turtle.setup(400,500)
+wn = turtle.Screen()
+wn.title("Tess becomes a traffic light!")
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+
+
+x = 0
+def state_machine():
+    global x
+    if x == "A":
+        tess.left(15)
+        tess.forward(15)
+        x == "B"
+    elif x == "B":
+        tess.right(15)
+        tess.forward(15)
+        x == "A"
+    wn.onkey(state_machine,x)
+    wn.listen()
+
+state_machine()
+
+wn.mainloop()
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    
