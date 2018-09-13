@@ -6,6 +6,10 @@ import turtle
 def make_window(colr, ttle):
     w = turtle.Screen()
     w.bgcolor(colr)
+    maxheight = max(xs)
+    numbars = len(xs)
+    w.setworldcoordinates(0 - border, 0 - border, 40 * numbars + border, maxheight + border) #setworldcoordinates(self, llx, lly, urx, ury)用来调节图形在画布上的边距
+    w.bgcolor(colr)
     w.title(ttle)
     return w
 
