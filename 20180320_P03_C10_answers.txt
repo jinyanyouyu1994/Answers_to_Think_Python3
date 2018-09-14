@@ -1,0 +1,128 @@
+import sys
+
+def test(did_pass):
+    """print the result of a test"""
+    linenum = sys._getframe(1).f_lineno
+    if did_pass:
+        msg = "test at line {0} ok.".format(linenum)
+    else:
+        msg = "test at line {0} FAILED.".format(linenum)
+    print(msg)
+	
+###
+students = [("John", ["CompSci", "Physics"]),("Vusi", ["Maths", "CompSci", "Stats"]),("Jess", ["CompSci", "Accounting", "Economics", "Management"]),("Sarah",["InfSys", "Accounting", "Economics", "CommLaw"]),("Zuki",["Sociology", "Economics", "Law", "Stats", "Music"])]
+counter = 0
+for (name,subjects) in students:
+    if "CompSci" in subjects:
+        counter =+ 1
+
+print("The number of students taking CompSci is ",counter)
+
+###
+def double_stuff(a_list):
+    for (idx,val) in enumerate(a_list):
+        a_list[idx] = 2 * val
+
+things = [2, 5, 9]
+double_stuff(things)
+print(things)
+
+###T4
+
+this = ["I", "am", "not", "a", "crook"]
+that = ["I", "am", "not", "a", "crook"]
+print("Test 1:{0}".format(this is that))
+that = this
+print("Test 2:{0}".format(this is that))
+
+###T5
+
+def add_vectors(u,v):
+    new_list = []
+    for i in range(len(u)):
+        new_elm = u[i] + v[i]
+        new_list.append(new_elm)
+    return new_list
+
+
+print(add_vectors([1, 1], [1, 1]))
+print(add_vectors([1, 2], [1, 4]))
+print(add_vectors([1, 2, 1], [1, 4, 3]))
+
+def test_suite():
+    test(add_vectors([1, 1], [1, 1]) == [2, 2])
+    test(add_vectors([1, 2], [1, 4]) == [2, 6])
+    test(add_vectors([1, 2, 1], [1, 4, 3]) == [2, 6, 4])
+test_suite()
+
+###T6
+
+def scalar_mult(s,v):
+    new_list = []
+    for i in range(len(v)):
+        new_elm =s*v[i]
+        new_list.append(new_elm)
+    return new_list
+
+
+print(scalar_mult(5, [1, 2]))
+print(scalar_mult(3, [1, 0, -1]))
+print(scalar_mult(7, [3, 0, 5, 11, 2]))
+
+def test_suite():
+    test(scalar_mult(5, [1, 2]) == [5, 10])
+   
+test_suite()
+
+###T7
+
+def dot_product(u,v):
+    new_elm = 0
+    for i in range(len(u)):
+        new_elm += u[i] * v[i]
+    return new_elm
+
+print(dot_product([1, 2, 1], [1, 4, 3]))
+
+def test_suite():
+    test(dot_product([1, 1], [1, 1]) == 2)
+    test(dot_product([1, 2], [1, 4]) == 9)
+test_suite()
+
+###T8
+
+def cross_product(u,v):
+    dimension = len(u)
+    new_elm = 0
+    new_list = []
+    for i in range(dimension):
+        for j in range(dimension):
+            for k in range(dimension):
+                while i != j != k:
+                    new_elm[i] += u[j]*v[k] - u[k]*v[j]
+
+                    new_list.append(new_elm)
+                return new_list
+print(cross_product([1, 2, 1],[1, 4, 3]))
+
+###T9
+
+def replace(s,old,new):
+    a_list = s.split(old)
+    b_list = new.join(a_list)
+
+    return b_list
+
+print(replace("Mississippi", "i", "I"))
+
+def test_suite():
+    s = "I love spom! Spom is my favorite food. Spom, spom, yum!"
+    test(replace(s, "om", "am") == "I love spam! Spam is my favorite food. Spam, spam, yum!")
+test_suite()
+
+
+
+
+
+
+
