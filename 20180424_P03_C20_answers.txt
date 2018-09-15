@@ -1,0 +1,138 @@
+####
+eng2sp = {}
+eng2sp["one"] = "uno"
+eng2sp["two"] = "dos"
+eng2sp["three"] = "tres"
+for (k,v) in eng2sp.items():
+    print("Got key",k,"which maps to value",v)
+
+ks = list(eng2sp.items())
+print(ks)
+
+###
+opposites = {"up": "down", "right": "wrong", "yes": "no"}
+alias = opposites #change any one of them will change another
+
+copy = opposites.copy()
+copy["right"] = "privilege"#shallow acopy, doesnot change opposites
+print(opposites["right"])
+
+#### using memo to solve the Fibonacci number 
+alreadyknown = {0:0,1:1}
+
+def fib(n):
+    if n not in alreadyknown:
+        new_value = fib(n-1) + fib(n-2)
+        alreadyknown[n] = new_value
+    return alreadyknown[n]
+
+print(fib(40))
+
+###
+letter_counts = {}
+for letter in "Mississippi":
+    letter_counts[letter] = letter_counts.get(letter,0)+1
+letter_items = list(letter_counts.items())
+letter_items.sort()
+print(letter_items)
+
+### T1
+letter_counts = {}
+n = "ThiS is String with Upper and lower case Letters"
+n = n.lower()
+n = n.replace(" ","")
+for letter in n:
+    letter_counts[letter] = letter_counts.get(letter,0)+1
+letter_keys = list(letter_counts.keys())
+letter_values = list(letter_counts.values())
+letter_items = list(letter_counts.items())
+letter_keys.sort()
+
+for i in range(len(letter_items)):
+    print(letter_items[i])
+
+### T2
+
+import test
+
+def add_fruit(inventory,fruit,quantity = 0):
+    inventory[fruit] = quantity
+    return inventory
+
+new_inventory = {'strawberries': 10}
+add_fruit(new_inventory,"strawberries",10)
+test.test("strawberries" in new_inventory)
+
+##### T3
+
+import string
+
+def rev_punctuations(s):
+    s_wot_punct = ""
+    for letter in s:
+        if letter not in string.punctuation:
+            s_wot_punct += letter
+    return s_wot_punct
+
+def test_wds(the_text):
+    my_substitutions = the_text.maketrans(
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&()*+,-./:;<=>?@[]^_‘{|}~’\\",
+        "abcdefghijklmnopqrstuvwxyz                                          ")
+    clean_text = the_text.translate(my_substitutions)
+    wds = clean_text.split()
+    return wds
+
+def get_wds(filename):
+    f = open(filename,"r")
+    content = f.read()
+    f.close()
+    wds = test_wds(content)
+    return wds
+book_wds = get_wds("sortedfriends.txt")
+
+wds_dict = {}
+def count_wds(book_wds):
+    for letter in book_wds:
+        wds_dict[letter] = wds_dict.get(letter,0)+1
+        wds_dict_items = list(wds_dict.items())
+        wds_dict_items.sort()
+    return wds_dict_items
+
+print("Word {0:>{1}}{2}{3}".format("Count",20,"\n","========================="))
+tub = count_wds(wds_dict,book_wds)
+for i in tub:
+    print(i[0],"{0:>{1}}".format(i[1],20-len(i[0])))
+print(wds_dict["world"])
+
+print(k[0], "{0:>{1}}".format(k[1], 20 - n))
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

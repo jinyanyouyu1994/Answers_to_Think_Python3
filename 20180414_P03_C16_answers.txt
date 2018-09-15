@@ -1,0 +1,99 @@
+class Point:
+    """ Point class represents and manipulates x,y coords. """
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return ("({0}, {1})".format(self.x,self.y))
+
+class Rectangle:
+    def __init__(self, posn, w, h):
+        self.corner = posn
+        self.width = w
+        self.height = h
+
+    def __str__(self):
+        return ("({0}, {1}, {2})".format(self.corner, self.width, self.height))
+
+    def grow(self,delta_width,delta_height):
+        self.width += delta_width
+        self.height += delta_height
+
+    def move(self,dx,dy):
+        self.corner.x += dx
+        self.corner.y += dy
+
+box = Rectangle(Point(10,5), 100, 50)
+print("box: ", box)
+box.grow(25,-10)
+print(box)
+box.move(-10,10)
+print(box)
+
+def same_coordinate(p1,p2):
+    return (p1.x == p2.x) and (p1.y == p2.y)
+
+### T1
+
+class Point:
+   #...
+
+class Rectangle:
+    def __init__(self, posn, w, h):
+        self.corner = posn
+        self.width = w
+        self.height = h
+
+    def __str__(self):
+        return ("({0}, {1}, {2})".format(self.corner, self.width, self.height))
+
+    def grow(self,delta_width,delta_height):
+        self.width += delta_width
+        self.height += delta_height
+
+    def move(self,dx,dy):
+        self.corner.x += dx
+        self.corner.y += dy
+
+    def area(self):
+        area = self.width * self.height
+        return area
+
+### T2
+
+#...
+    def perimeter(self):
+        perm = (self.width + self.height) * 2
+        return perm
+
+### T3
+#...
+    def flip(self):
+        import copy
+        a = self.width
+        b = self.height
+        self.width = b
+        self.height = a
+        return self
+
+### T4
+#...
+
+    def contains(self,target):
+        if target.x < self.width and target.y < self.height:
+            return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,134 @@
+####
+
+import smtplib, email.mime.text
+
+me = "1690957750@qq.com"
+fred = "1278665030@qq.com"
+mail_server = "mail.qq.com"
+mail_uesr = ""#就是我的账号
+mail_passwd = ""#就是我的密码，你可以换成自己的调试
+
+msg = email.mime.text.MIMEText("""Hi, this is an email from my python code. Happy Labor Day!
+Yours Yayu!""")
+
+msg["From"] = me
+msg["To"] = fred
+msg["Subject"] = "Festival Greetings"
+# creat a connection to your mail server
+svr = smtplib.SMTP(mail_server, 25)
+svr.login(mail_uesr,mail_passwd)
+rsps = svr.sendmail(me, fred, msg.as_string())
+if rsps != {}:
+    print("Sending filed for ", rsps)
+else:
+    print("Message sent.")
+
+svr.quit()
+
+###
+
+from codecs import latin_1_encode
+from wsgiref.simple_server import make_server
+
+def my_handler(env,start_rsps):
+    path_info = env.get("http://127.0.0.1:8000/catalogue?category=guitars.",None)
+    query_string = env.get("QUERY_STRING",None)
+    rsps_body = "You asked for {0} with query{1}".format(path_info,query_string)
+    rsps_headers = [("Content-Type","text/plain"),("Content-Length",str(len(rsps_body)))]
+    start_rsps("200 OK",rsps_headers)
+    rsps = latin_1_encode(rsps_body)[0]
+    return [rsps]
+
+httpd = make_server("172.22.49.94:22", 8000, my_handler)
+httpd
+
+###
+from codecs import latin_1_encode
+from wsgiref.simple_server import make_server
+
+import time
+
+def my_handler(env,start_rsps):
+    path_info = env.get("Path_Info",None)# 这里肯定是存在问题的
+    if path_info == "/gettime":
+        rsps_body = gettime(env,start_rsps)
+    elif path_info == "/classlist":
+        rsps_body = classlist(env, start_rsps)
+    else:
+        rsps_body = ""
+        start_rsps("404 Not Found", [("Content-Type","text/plain")])
+
+    rsps = latin_1_encode(rsps_body)[0]
+    return [rsps]
+
+def gettime(env,rsps):
+    html_template = """<html>
+    <body bgcolor = 'lightblue'>
+        <h2>The time on the server is {0}</h2>
+    <body>
+    </html>
+    """
+    rsps_body = html_template.format(time.ctime())
+    rsps_headers = [("Content-Type", "text/html"),("Content-Length",str(len(rsps_body)))]
+    rsps("200 OK",rsps_headers)
+    return rsps_body
+
+def classlist(env, rsps):
+    return # Will be written in the next section!
+
+httpd = make_server("172.22.49.94:22", 8000, my_handler)
+httpd.serve_forever()
+
+#####
+
+import sqlite3
+
+connection = sqlite3.connect("c:\studentRecords.db")
+
+cursor = connection.cursor()
+cursor.execute("""CREATE TABLE StudentSubjects(studentName, year, subject""")
+
+print("Database table StudentSubject has been created.")
+
+# creat a testdata
+test_data = [
+("John", 2012, ["CompSci", "Physics"]),
+("Vusi", 2012, ["Maths", "CompSci", "Stats"]),
+("Jess", 2011, ["CompSci", "Accounting", "Economics", "Management"]),
+("Sarah", 2011, ["InfSys", "Accounting", "Economics", "CommLaw"]),
+("Zuki", 2012, ["Sociology", "Economics", "Law", "Stats", "Music"])]
+
+for(student, yr, subjects) in test_data:
+    for subj in subjects:
+        t = (student,yr,subj)
+        cursor.execute("INSERT INTO StudentSubjects VALUES (?,?,?)",)
+connection.commit()
+
+# verify
+cursor.execute("SELECT COUNT(*) FROM StudentSubjects")
+result = cursor.fetchall()
+numrecs = result[0][0]
+cursor.close()
+
+print("StudentSubjects table now has {0} rows of data.".format(numrecs))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

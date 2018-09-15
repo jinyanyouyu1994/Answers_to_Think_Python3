@@ -1,0 +1,80 @@
+filename = input("Enter a file name: ")
+try:
+    f = open(filename,"r")
+except:
+    print("There is no file named",filename)
+	
+###
+def get_age():
+     age = int(input("Please enter your age: "))
+     if age < 0:
+         my_error = ValueError("{0} is not a valid age".format(age))
+     raise my_error
+     return age
+get_age()
+
+###
+
+def recursion_depth(number):
+    print("Recursion depth number", number)
+    try:
+        recursion_depth(number + 1)
+    except:
+        print(" I cannot go any deeper into this wormhole.")
+recursion_depth(0)
+
+###
+import turtle
+import time
+
+def show_poly():
+    try:
+        win = turtle.Screen()
+        tess = turtle.Turtle()
+
+        n = int(input("How many sides do you want to in your polygon?"))
+        angle = 360 / n
+        for i in range(n):
+            tess.forward(100)
+            tess.left(angle)
+        time.sleep(3)
+    finally:
+        win.bye()
+show_poly()
+show_poly()
+show_poly()
+
+
+#####T1
+def readposint():
+    try:
+        n = int(input("Enter your number:"))
+        if n <= 0:
+            my_error = ValueError("{0} is not a valid positive num".format(n))
+            raise my_error
+
+    except:
+        print(my_error)
+
+readposint()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

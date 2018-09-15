@@ -1,0 +1,174 @@
+import pygame
+
+def main():
+
+    pygame.init() ###prepare the pygame module for use
+    surface_sz = 480
+
+    main_surface = pygame.display.set_mode((surface_sz,surface_sz))
+
+    small_rect = (3,2,150,90)
+    some_color = (255,0,0)
+
+    while True:
+        ev = pygame.event.poll()
+        if ev.type == pygame.QUIT:
+            break
+        main_surface.fill((0,200,255))
+        main_surface.fill(some_color,small_rect)
+		ball = pygame.image.load("C:/Users/p/Desktop/ball.jpg")
+        main_surface.blit(ball, (50, 100))
+        my_font = pygame.font.SysFont('Courier',16)
+        the_text = my_font.render('Hello,world!',True,(0,0,0))
+        main_surface.blit(the_text,(10,10))
+        pygame.display.flip()# Now the surface is ready, tell pygame to display it!
+    pygame.quit()
+main()
+
+#####################
+
+import pygame
+import time
+
+def main():
+
+    pygame.init() ###prepare the pygame module for use
+
+    main_surface = pygame.display.set_mode((600,600))
+    ball = pygame.image.load("C:/Users/p/Desktop/ball.jpg")
+    my_font = pygame.font.SysFont('Courier', 16)
+
+    frame_count = 0
+    frame_rate = 0
+    t0 = time.clock()
+
+    while True:
+        ev = pygame.event.poll() #look for any event
+        if ev.type == pygame.QUIT:
+            break
+
+        frame_count += 1
+        if frame_count % 60 == 0:
+            t1 = time.clock()
+            frame_rate = 60 / (t1 - t0)
+            t0 = t1
+
+        main_surface.fill((0, 200, 255))
+        main_surface.fill((255, 0, 0), (300, 100, 150, 90))
+        main_surface.blit(ball, (100, 120))
+
+        the_text = my_font.render('Frame = {0}, rate = {1:.2f} fps'.format(frame_count, frame_rate), True, (0, 0, 0,))
+        main_surface.blit(the_text, (10, 10))
+
+
+        pygame.display.flip()  # Now the surface is ready, tell pygame to display it!
+
+    pygame.quit()
+main()
+
+#### N queens board
+
+import pygame
+import draw_queens
+
+def share_diagonal(x0,y0,x1,y1):
+    dy = abs(y1-y0)
+    dx = abs(x1-x0)
+    return dx == dy
+
+def col_clashes(bs,c):
+    for i in range(c):
+        if share_diagonal(i,bs[i],c,bs[c]):
+            return True
+    return False
+
+def has_clashes(the_board):
+    for col in range(1,len(the_board)):
+        if col_clashes(the_board,col):
+            return True
+    return False
+
+def main():
+    import random
+    rng = random.Random()
+
+    bd = list(range(8))
+    num_found = 0
+    tries = 0
+    while num_found <10:
+        rng.shuffle(bd)
+        tries += 1
+        if not has_clashes(bd):
+            print("Found solution {0} in {1} tries.".format(bd,tries))
+            draw_queens.draw_board(bd)
+            tries = 0
+            num_found += 1
+
+main()
+
+#### Dukes
+import pygame
+
+class DukeSprite:
+
+    def __init__(self,img,target_posn):
+        self.image = img
+        self.posn = target_posn
+        self.anim_frame_count = 0
+        self.curr_patch_num = 0
+
+    def update(self):
+        if self.anim_frame_count > 0:
+            self.anim_frame_count = (self.anim_frame_count + 1) % 60
+            self.curr_patch_num = self.anim_frame_count // 6
+
+    def draw(self,target_surface):
+        patch_rect = (self.curr_patch_num*50,0,50,self.image.get_height())
+        target_surface.blit(self.image,self.posn,patch_rect)
+
+    def contains_point(self,pt):
+        (my_x,my_y) = self.posn
+        my_width = self.image.get_width
+        my_height = self.image.get_height()
+        (x,y) = pt
+        return (x >= my_x and x < my_x + my_width and y >= my_y and y < my_y + my_height)
+
+    def handle_click(self):
+        if self.anim_frame_count == 0:
+            self.anim_frame_count = 5
+
+duke_sprite_sheet = pygame.image.load("C:/Users/p/Desktop/Duke.png")
+all_sprites = []
+# instantiate two duke instances, put them on the chessboard
+
+duke1 = DukeSprite(duke_sprite_sheet, (sq_sz * 2, 0))
+duke2 = DukeSprite(duke_sprite_sheet, (sq_sz * 5, sq_sz))
+all_sprites.append(duke1)
+all_sprites.append(duke2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

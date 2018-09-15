@@ -1,0 +1,74 @@
+class Stack:
+    def __init__(self): # the initialization method sets items to the epmty list
+        self.items = []
+
+    def push(self,item): # push a new item onto the stack
+        self.items.append(item)
+
+    def pop(self): # remove and return the last item on the list
+        return self.items.pop()
+
+    def is_empty(self): # check if the stack is empty
+        return (self.items == [])
+
+
+s = Stack()
+s.push("+")
+s.push(54)
+s.push(45)
+
+while not s.is_empty():
+    print(s.pop(), end=" ")
+
+	
+### 25.6
+
+import re
+s = re.split("([^0-9])", "123+456*/")
+print(s)	
+	
+### 25.7
+
+class Stack:
+    ##……
+
+def eval_postfix(expr):
+    import re
+    token_list = re.split("([^0-9])", expr) # ^ means negates
+    stack = Stack()
+    for token in token_list:
+        if token == "" or token == " ":
+            continue
+        if token == "+":
+            sum = stack.pop() + stack.pop()
+            stack.push(sum)
+        elif token == "*":
+            prd = stack.pop() * stack.pop()
+            stack.push(prd)
+        else:
+            stack.push(int(token))
+    return stack.pop()
+
+print(eval_postfix("56 47 + 2 *")) # postfix (56 + 47) * 2
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

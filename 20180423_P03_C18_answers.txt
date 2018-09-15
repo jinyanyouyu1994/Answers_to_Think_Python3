@@ -1,0 +1,420 @@
+def koch(t,order,size):
+    """make turtle t draw a Koch fractal of 'order' and 'size'. leave the turtle facing the same direction."""
+    if order == 0:
+        t.forward(size)
+    else:
+        koch(t,order-1,size/3)
+        t.left(60)
+        koch(t,order-1,size/3)
+        t.right(120)
+        koch(t, order - 1, size / 3)
+        t.left(60)
+        koch(t, order - 1, size / 3)
+		
+###########
+def koch(t,order,size):
+    """make turtle t draw a Koch fractal of 'order' and 'size'. leave the turtle facing the same direction."""
+    if order == 0:
+        t.forward(size)
+    else:
+        for angle in [60,-120,60,0]:
+            koch(t,order-1,size/3)
+            t.left(angle)
+       
+	   
+####### Koch fractals
+
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("Koch fractals")
+t = turtle.Turtle()
+t.color("red")
+
+def koch_0(t,size):
+    t.forward(size)
+
+def koch_1(t,size):
+    for angle in [60,-120,60,0]:
+        koch_0(t,size/3)
+        t.left(angle)
+
+def koch_2(t,size):
+    for angle in [60,-120,60,0]:
+        koch_1(t,size/3)
+        t.left(angle)
+
+def koch_3(t,size):
+    for angle in [60,-120,60,0]:
+        koch_2(t,size/3)
+        t.left(angle)
+
+koch_3(t,500)
+wn.mainloop()
+
+
+####
+
+def r_sum(nested_num_list):
+    tot = 0
+    for element in nested_num_list:
+        if type(element) == type([]):
+            tot += r_sum(element)
+        else:
+            tot += element
+    return tot
+	
+	
+###
+
+def r_max(nxs):
+    largest = None
+    first_time = True
+    for e in nxs:
+        if type(e) == type([]):
+            val = r_max(e)
+        else:
+            val = e
+        if first_time or val > largest:
+            largest = val
+            first_time = False
+    return largest
+
+###
+def recursion_depth(number):
+    print("{0},".format(number),end = "")
+    recursion_depth(number+1)
+recursion_depth(0)
+
+####
+
+def fib(n):
+    if n<= 1:
+        return n
+    t = fib(n-1) + fib(n-2)
+    return t
+
+import time
+t0 = time.clock()
+n = 35
+result = fib(n)
+t1 = time.clock()
+print("fib({0}) = {1},({2:.2f} secs)".format(n,result,t1-t0))
+
+##### the following program lists the contents of a directory and all its subdirectories
+import os
+
+def get_dirlist(path):
+    """return a sorted list of all entries in path. this returns just the names, not the full path to the names. """
+    dirlist = os.listdir(path)
+    dirlist.sort()
+    return dirlist
+
+def print_files(path,prefix = ""):
+    """print recursive listing of contents of path"""
+    if prefix == "":#detect outetmost call, print a heading
+        print("Folder listing for",path)
+        prefix = "| "
+
+    dirlist = get_dirlist(path)
+    for f in dirlist:
+        print(prefix + f)
+        fullname = os.path.join(path,f)
+        if os.path.isdir(fullname):
+            print_files(fullname,prefix + "| ")
+
+print(print_files("C:/Users/p/Anaconda3/Lib/site-packages/pygame/examples",prefix=""))
+
+####T1
+
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("T1")
+t = turtle.Turtle()
+t.color("red")
+t.hideturtle()
+
+def koch_0(t,size):
+    t.forward(size)
+
+def koch_1(t,size):
+    for angle in [60,60,-120,60]:
+        t.left(angle)
+        koch_0(t, size / 3)
+
+def koch_2(t,size):
+    for angle in [-180,0]:
+        koch_1(t, size / 3)
+        t.left(angle)
+
+def koch_3(t,size):
+    for angle in [0,0,0,0,0,0]:
+        koch_2(t, size)
+        t.left(angle)
+
+koch_3(t,200)
+wn.mainloop()
+
+####T2
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("T2")
+t = turtle.Turtle()
+t.color("red")
+
+
+def koch_0(t,size):
+    t.forward(size)
+
+def koch_1(t,size):
+    for angle in [85,-170,85,0]:
+        koch_0(t, size / 3)
+        t.right(angle)
+
+def koch_2(t,size):
+    for angle in [85,-170,85,0]:
+        koch_1(t, size / 3)
+        t.right(angle)
+
+def koch_3(t,size):
+    for angle in [85,-170,85,0]:
+        koch_2(t, size)
+        t.right(angle)
+
+koch_3(t,200)
+wn.mainloop()
+
+### T2-2
+
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("T1")
+t = turtle.Turtle()
+t.color("red")
+t.speed(20)
+
+def koch_0(t,size):
+    t.forward(size)
+
+def koch_1(t,size):
+    for angle in [85,-170,85,0]:
+        koch_0(t, size / 3)
+        t.right(angle)
+
+def koch_2(t,size):
+    for angle in [85,-170,85,0]:
+        koch_1(t, size / 3)
+        t.right(angle)
+
+def koch_3(t,size):
+    for angle in [90,90,85,0]:
+        koch_2(t, size)
+        t.right(angle)
+def koch_4(t,size):
+    for angle in [175,175,175,175]:
+        koch_3(t, size)
+        t.left(angle)
+
+koch_4(t,200)
+wn.mainloop()
+
+#### T3
+
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("T1")
+t = turtle.Turtle()
+t.color("red")
+
+
+def koch_0(t,size):
+    for angle in [120,120,0]:
+        t.forward(size)
+        t.left(angle)
+
+def koch_1(t,size):
+    for angle in [120,0]:
+        koch_0(t, size / 3)
+        t.left(angle)
+        koch_0(t, size / 6)
+
+
+
+
+def koch_2(t,size):
+    koch_1(t, size / 3)
+
+    t.forward(size / 3)
+    koch_1(t, size / 3)
+
+
+def koch_3(t,size):
+    for angle in [90,90,85,0]:
+        koch_2(t, size)
+        t.right(angle)
+def koch_4(t,size):
+    for angle in [175,175,175,175]:
+        koch_3(t, size)
+        t.left(angle)
+
+koch_1(t,100)
+wn.mainloop()
+
+### 炸掉。这个不会写，从网上抄来的
+
+import turtle
+
+def drawTriangle(points,color,myTurtle):
+    myTurtle.fillcolor(color)
+    myTurtle.up()
+    myTurtle.goto(points[0][0],points[0][1])
+    myTurtle.down()
+    myTurtle.begin_fill()
+    myTurtle.goto(points[1][0],points[1][1])
+    myTurtle.goto(points[2][0],points[2][1])
+    myTurtle.goto(points[0][0],points[0][1])
+    myTurtle.end_fill()
+
+def getMid(p1,p2):
+    return ( (p1[0]+p2[0]) / 2, (p1[1] + p2[1]) / 2)
+
+def sierpinski(points,degree,myTurtle):
+    colormap = ['blue','red','green','white','yellow',
+                'violet','orange']
+    drawTriangle(points,colormap[degree],myTurtle)
+    if degree > 0:
+        sierpinski([points[0],
+                        getMid(points[0], points[1]),
+                        getMid(points[0], points[2])],
+                   degree-1, myTurtle)
+        sierpinski([points[1],
+                        getMid(points[0], points[1]),
+                        getMid(points[1], points[2])],
+                   degree-1, myTurtle)
+        sierpinski([points[2],
+                        getMid(points[2], points[1]),
+                        getMid(points[0], points[2])],
+                   degree-1, myTurtle)
+
+def main():
+   myTurtle = turtle.Turtle()
+   myWin = turtle.Screen()
+   myPoints = [[-100,-50],[0,100],[100,-50]]
+   sierpinski(myPoints,3,myTurtle)
+   myWin.exitonclick()
+
+main()
+
+#### T5
+
+import test
+
+def recursive_min(nxs):
+    smallest = None
+    first_time = True
+    for e in nxs:
+        if type(e) == type([]):
+            val = recursive_min(e)
+        else:
+            val = e
+
+        if first_time or smallest > val:
+            smallest = val
+            first_time = False
+    return smallest
+
+test.test(recursive_min([2, 9, [1, 13], 8, 6]) == 1)
+
+### T6
+import test
+
+def count(target,nsx):
+    count = 0
+    for e in nsx:
+        if type(e) == type([]):
+            val = nsx
+        else:
+            val = e
+
+        if val == target:
+            count += 1
+    return count
+
+
+test.test(count(2, [])==0)
+
+### T7
+import test
+
+def flatten(nsx):
+    result = []
+    ele = None
+    first_time = True
+    for e in nsx:
+        if type(e) == type([]):
+            val = flatten(e)
+        else:
+            val = e
+        if first_time:
+            ele = val
+            result.append(ele)
+            first_time = False
+    return result
+
+
+
+
+print(flatten([2,9,[2,1,13,2],8,[2,6]]))
+test.test(flatten([2,9,[2,1,13,2],8,[2,6]]) == [2,9,2,1,13,2,8,2,6])
+
+
+#####
+
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor("alice blue")
+wn.title("T1")
+t = turtle.Turtle()
+t.color("red")
+t.speed(2)
+
+def koch_0(t,size):
+    t.pendup()
+    t.left(90)
+    t.forward(size/(3)**0.5)
+    t.pendown()
+    for angle in [150,120,120]:
+        t.left(angle)
+        t.forward(size)
+
+def koch_1(t,size):
+
+    t.left(90)
+    t.forward(size / (3) ** 0.5)
+    t.right(90)
+    t.pendown()
+    for angle in [120,120,120]:
+        koch_0(t, size / 3)
+        t.left(angle)
+
+
+
+
+koch_0(t,200)
+wn.mainloop()
+0-
+
+
+
+
+

@@ -1,0 +1,171 @@
+###
+class MyTime:
+    def __init__(self,hrs = 0,mins = 0, secs = 0):
+        self.hours = hrs
+        self.minutes = mins
+        self.seconds = secs
+    def __str__(self):
+        return "{0}:{1}:{2}".format(self.hours, self.minutes,self.seconds)
+
+
+tim1 = MyTime(11, 59, 30)
+print(tim1)
+
+####
+class MyTime:
+    def __init__(self,hrs = 0,mins = 0, secs = 0):
+        self.hrs = hrs
+        self.mins = mins
+        self.secs = secs
+    def __str__(self):
+        return "{0}:{1}:{2}".format(self.hrs, self.mins,self.secs)
+    def increment(self, secs):
+        self.secs += secs
+        while self.secs >= 60:
+            self.secs -= 60
+            self.mins += 1
+        while self.mins >= 60:
+            self.mins -= 60
+            self.hrs += 1
+
+def add_time(t1,t2):
+    h = t1.hrs + t2.hrs
+    m = t1.mins + t2.mins
+    s = t1.secs + t2.secs
+    if s >= 60:
+        s -= 60
+        m += 1
+    if m >= 60:
+        m -= 60
+        h += 1
+    sum_t = MyTime(h,m,s)
+    return sum_t
+
+t1 = MyTime(9, 14, 30)
+t2 = MyTime(3, 35, 30)
+t1.increment(200)
+print(add_time(t1,t2))
+
+###
+   
+class MyTime:
+    def __init__(self,hrs = 0,mins = 0, secs = 0):
+        totalsecs = hrs * 3600 + mins * 60 + secs
+        self.hrs = totalsecs // 3600
+        leftsecs = totalsecs % 3600
+        self.mins = leftsecs // 60
+        self.secs = leftsecs % 60
+
+    def __str__(self):
+        return "{0}:{1}:{2}".format(self.hrs, self.mins,self.secs)
+
+    def to_secs(self):
+         return self.hrs * 3600 + self.mins * 60 + self.secs
+
+	def after(self,time2):
+        """return True if I am strictly grater than time2"""
+        return self.to_secs() > time2.to_secs()
+    
+    def __add__(self, other):
+        return MyTime(0,0,self.to_secs() + other.to_secs())
+
+    def __sub__(self, other):
+        return MyTime(0,0,self.to_secs() - other.to_secs())
+	def between(self,t1,t2):
+        if t1.to_secs() <= obj.to_secs() < t2.to_secs():
+            return True
+        return False
+		
+def add_time(t1,t2):
+    secs = t1.to_secs() + t2.to_secs()
+    return MyTime(0,0,secs)
+
+def sub_time(t1,t2):
+    secs = t1.to_secs() - t2.to_secs()
+    return MyTime(0, 0, secs)
+	
+t1 = MyTime(9, 14, 30)
+t2 = MyTime(3, 35, 30)
+print(add_time(t1,t2))
+
+#####################
+
+class Point:
+    def __init__(self,x=0 ,y=0):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return "({0},{1})".format(self.x,self.y)
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __mul__(self, other): ##dot product
+        return self.x * other.x + self.y * other.y
+
+    def __rmul__(self, other):##scalar multiplication
+        return Point(other * self.x , other * self.y)
+
+    def reverse(self):
+        (self.x , self.y) = (self.y, self.x)
+
+def multadd(x, y, z):
+    return x * y + z
+
+def front_and_back(front):
+    import copy
+    back = copy.copy(front)
+    back.reverse()
+    print(str(front) + str(back))
+
+p = Point(3, 4)
+print(front_and_back(p))
+
+### T1-T2
+
+class MyTime：
+	# the same as previous
+	 
+	 def between(self,t1,t2):
+        if t1.to_secs() <= obj.to_secs() < t2.to_secs():
+            return True
+        return False
+### T5-T6
+
+class MyTime:
+    def __init__(self, hrs=0, mins=0, secs=0):
+        self.hrs = hrs
+        self.mins = mins
+        self.secs = secs
+
+    def __str__(self):
+        return "{0}:{1}:{2}".format(self.hrs, self.mins, self.secs)
+
+    def to_secs(self):
+        return self.hrs * 3600 + self.mins * 60 + self.secs
+
+    def after(self, time2):
+        """return True if I am strictly grater than time2"""
+        return self.to_secs() > time2.to_secs()
+
+    def __add__(self, other):
+        return MyTime(0, 0, self.to_secs() + other.to_secs())
+
+    def __sub__(self, other):
+        return MyTime(0, 0, self.to_secs() - other.to_secs())
+
+    def between(self, t1, t2):
+        if t1.to_secs() <= self.to_secs() < t2.to_secs():
+            return True
+        return False
+
+    def increment(self,secs):
+        self.secs = self.to_secs() + secs
+        self.hrs = self.secs // 3600
+        leftsecs = self.secs % 3600
+        self.mins = leftsecs // 60
+        self.secs = leftsecs % 60
+        return self
+
+
