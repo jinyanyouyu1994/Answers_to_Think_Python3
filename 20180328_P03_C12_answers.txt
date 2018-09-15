@@ -1,0 +1,90 @@
+###
+myfile = open("test.txt","w")
+myfile.write("My first file written from Python\n")
+myfile.write("dfkadsfkdhfdjkfhdjfdhdj\n")
+myfile.write("djfhjedkfnjdkjfdkf\n")
+myfile.close()
+
+### a handy pattern
+
+mynewhandle = open("test.txt","r")
+while True:
+    theline = mynewhandle.readline()
+    if len(theline) == 0:
+        break
+    print(theline,end="")
+mynewhandle.close()
+
+###
+
+f = open("friends.txt","r")
+xs = f.readlines()
+f.close()
+xs.sort()
+g = open("sortedfriends.txt","w")
+for v in xs:
+    g.write(v)
+g.close()
+
+###
+
+f = open("test.txt")
+content = f.read()
+f.close()
+words = content.split()
+print("There are {0} words in the file.".format(len(words)))
+print(content)
+print(words)
+
+### A filter that copies one file to another, omitting any lines that begin with #:
+
+def filter(oldfile,newfile):
+    infile = open(oldfile, "r") ##为什么这里总是报错，不明白
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readline()
+        if len(text) == 0:
+            break
+        if text[0] == "#":
+            continue
+        outfile.write(text)
+
+    infile.close()
+    outfile.close()
+oldfile = open("test.txt","w")
+newfile = open("test_new.txt","w")
+print(filter(oldfile,newfile))
+
+###
+
+import urllib.request
+
+url = "https://wiki.python.org/moin/HowTo" ##输入目标网址
+destination_filename = "rfc793.txt"
+urllib.request.urlretrieve(url, destination_filename)
+
+###
+import urllib.request
+
+def retrieve_page(url):
+    my_socket = urllib.request.urlopen(url)
+    dta = str(my_socket.readall())
+    my_socket.close()
+    return dta
+the_text = retrieve_page("https://wiki.python.org/moin/HowTo")
+print(the_text)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
