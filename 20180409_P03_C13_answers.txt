@@ -1,0 +1,249 @@
+
+#####creat a file named "friends.txt"
+myfile = open("friends.txt","w")
+myfile.write("My first file written from Python\n")
+myfile.write("----------------------------\n")
+myfile.write("Hello,world!\n")
+myfile.write("Aello,world!\n")
+myfile.close()
+
+### sort the file by alphabet
+f = open("friends.txt","r")
+xs = f.readlines()
+f.close()
+
+xs.sort()
+
+g = open("sortedfriends.txt","w")
+for v in xs:
+    g.write(v)
+g.close()
+
+###open a file named "sortedfriends.txt"
+mynewhandle = open("sortedfriends.txt","r")
+while True:
+    theline = mynewhandle.readline()
+    if len(theline) == 0:
+        break
+    print(theline,end = "")
+
+mynewhandle.close()
+
+### count the number of the file
+
+f = open("sortedfriends.txt")
+content = f.read()
+f.close()
+
+words = content.split()
+print(words)
+print("There are {0} words in the file.".format(len(words)))
+
+###
+
+f = open("sortedfriends.zip", "rb")
+g = open("thecopy.zip","wb")
+while True:
+    buf = f.read(1024)
+    if len(buf) == 0:
+        break
+    g.write(buf)
+
+f.close()
+g.close()
+
+###
+myfile = open("friends.txt","w")
+myfile.write("My first file written from Python\n")
+myfile.write("###----------------------------\n")
+myfile.write("Hello,world!\n")
+myfile.write("Aello,world!\n")
+myfile.close()
+
+def filter(oldfile,newfile):
+    infile = open(oldfile,"r")
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readline()
+        if len(text) == 0:
+            break
+        if text[0] == "#":
+            continue
+        outfile.write(text)
+    infile.close()
+    outfile.close()
+	
+filter("friends.txt","new_friends.txt")
+
+mynewhandle = open("new_friends.txt","r")
+while True:
+    theline = mynewhandle.readline()
+    if len(theline) == 0:
+        break
+    print(theline,end = "")
+
+mynewhandle.close()
+
+###
+wordfile = open("C:/Users/p/PycharmProjects/untitled4/friends.txt","r")
+wordlist = wordfile.readline()
+print(wordlist[:6])
+
+###
+
+import urllib.request
+
+url = "https://www.liebertpub.com/doi/10.1089/rej.2008.0661"
+destination_filename = "Scientific.txt"
+urllib.request.urlretrieve(url, destination_filename)
+
+
+###
+
+import urllib.request
+def retrieve_page(url):
+    my_scoket = urllib.request.urlopen(url)
+    dta = str(my_scoket.readall()) ##AttributeError: 'HTTPResponse' object has no attribute 'readall'
+    my_scoket.close()
+    return dta
+the_text =retrieve_page("https://media.readthedocs.org/pdf/mitmproxy/v0.17/mitmproxy.pdf")
+print(the_text)
+
+
+### T1
+
+def rev(oldfile,newfile):
+    infile = open(oldfile,"r")
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readlines()
+        if len(text) == 0:
+            break
+        outfile.writelines(text[::-1])
+    infile.close()
+    outfile.close()
+
+rev("text1.txt","new_text1.txt")
+
+mynewhandle = open("new_text1.txt","r")
+while True:
+    theline = mynewhandle.readline()
+    if len(theline) == 0:
+        break
+    print(theline,end = "")
+
+mynewhandle.close()
+
+print(text2)
+
+### T2
+
+def rev(oldfile,newfile):
+    infile = open(oldfile,"r")
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readline()
+        text2 = []
+        if len(text) == 0:
+            break
+        if "snake" in text:
+            text2.append(text)
+        outfile.writelines(text2)
+    infile.close()
+    outfile.close()
+
+rev("text1.txt","new_text1.txt")
+
+
+### 下面一行代码刚好相反
+def rev(oldfile,newfile):
+    infile = open(oldfile,"r")
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readline()
+        if len(text) == 0:
+            break
+        if "snake" in text:
+            continue
+        outfile.write(text)
+    infile.close()
+    outfile.close()
+
+rev("text1.txt","new_text1.txt")
+
+
+### T3
+
+def trans(oldfile,newfile):
+    infile = open(oldfile,"r")
+    outfile = open(newfile,"w")
+    while True:
+        text = infile.readline()
+        text = text[5:]
+        if len(text) == 0:
+            break
+        outfile.write(text)
+    infile.close()
+    outfile.close()
+
+def add_num(oldfile,newfile):
+    infile = open(oldfile, "r")
+    outfile = open(newfile, "w")
+    while True:
+        text = infile.readline()
+        if len(text) == 0:
+            break
+        counter = 0
+        for line in infile:
+
+            counter += 1
+            outfile.writelines("{0:0^4} {1}".format(counter, line))
+	infile.close()
+    outfile.close()
+
+trans("text1.txt","new_text1.txt")
+add_num("new_text1.txt","new_text2.txt")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
